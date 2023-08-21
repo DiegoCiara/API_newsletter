@@ -4,7 +4,7 @@ Esse projeto é o back-end da newsletter presente no repositório <a href="https
 ### Instale as dependências necessárias:
 yarn
 
-### Subindo um container docker
+### Subindo um container docker:
 Estamos utilizando um banco de dados postgreSQL em um container Docker, então vamos subir o container para nosso banco ser criado:
 docker-compose up -d
 
