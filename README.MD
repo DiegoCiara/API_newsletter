@@ -8,5 +8,5 @@ yarn
 Estamos utilizando um banco de dados postgreSQL em um container Docker, então vamos subir o container para nosso banco ser criado:
 docker-compose up -d
 
-#Inicie o projeto:
+## Inicie o projeto:
 node server.js
