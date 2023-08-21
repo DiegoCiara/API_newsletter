@@ -41,6 +41,21 @@ app.post('/api/cadastro', async (req, res) => {
   }
 });
 
+app.put('/api/contatos/:id', async (req, res) => {
+  const contactId = req.params.id;
+  const { nome, email } = req.body;
+  try {
+    await pool.query(
+      'UPDATE dados SET nome = $1, email = $2 WHERE id = $3',
+      [nome, email, contactId]
+    );
+    res.status(200).json({ message: 'Contato atualizado com sucesso' });
+  } catch (error) {
+    console.error('Erro ao atualizar contato:', error);
+    res.status(500).json({ message: 'Erro ao atualizar contato' });
+  }
+});
+
 app.get('/api/contatos', async (req, res) => {
   try {
     const { rows } = await pool.query('SELECT * FROM dados');
@@ -51,6 +66,16 @@ app.get('/api/contatos', async (req, res) => {
   }
 });
 
+app.delete('/api/contatos/:id', async (req, res) => {
+  const contactId = req.params.id;
+  try {
+    await pool.query('DELETE FROM dados WHERE id = $1', [contactId]);
+    res.status(204).send();
+  } catch (error) {
+    console.error('Erro ao excluir contato:', error);
+    res.status(500).json({ message: 'Erro ao excluir contato' });
+  }
+});
 
 app.get('/', (req, res) => {
   res.send('API is running');
